@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import { google } from 'googleapis'
 
 const emailcheckout = async (datos) => {
 
@@ -27,6 +28,25 @@ const emailcheckout = async (datos) => {
         <p>Pedido</p>
         `
     })
+
+
+    const auth = await google.auth.getClient({
+        scopes: ['https://www.googleapis.com/auth/spreadsheets']
+    });
+
+    const sheets = google.sheets({version: 'v4', auth})
+
+    const range = `Sheet1!C10`;
+
+    const response = await sheets.spreadsheets.values.append({
+        spreadsheetId: process.env.SHEET_ID,
+        range,
+        valueInputOption: 'USER_ENTERED',
+        resource: {
+            values: [['Otro']],
+        },
+    })
+
 
 }
 
