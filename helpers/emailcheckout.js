@@ -16,7 +16,7 @@ const emailcheckout = async (datos) => {
 
     const info = await transporter.sendMail({
         from: '"Distribuciones JM " <correo@correo.com>',
-        to: 'inversionesjm2314@gmail.com',
+        to: 'inversionesjm2314@gmail.com, cliente@cliente.com',
         subject: 'Nuevo Pedido',
         text: 'Nuevo Pedido',
         html: `
